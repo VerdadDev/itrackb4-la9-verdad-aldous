@@ -2,14 +2,15 @@ Lab Activity 6
 
 #Answers
 
-Q1 Your form sends data with POST rather than GET. Explain what would go wrong if it used GET instead. Your answer should say something about what a browser does when a page is refreshed.
+F1 Which column did you make nullable, and why that one and not another?
 
- - When use the Get instead of POST the input it will just go to URL.
+ - the one i make nullable is author and rate. because author can be sometimes be unknown and rate before rate user should add comic first.
 
-Q2 When validation fails, your controller does not run the code that saves the record — and you did not write an if statement to stop it. Explain what actually stops it, and where the visitor ends up.
+F2 Which step failed first for you, and what did the error say?
+ 
+ - when i try to run the php artisan db:show --counts and the error said RuntimeException the 'intl' PHP extension is required to use [format] method.
 
- - the laravel stop it and the save part does not run it will just go back to form and see errors.
+F3 You changed no Blade file in Part D, yet your pages still work. Why not?
 
-Q3 Your success message is displayed from the layout, which renders on every page. Explain why it does not appear on every page.
+ - the pages still work because the existing Blade files were already working
 
- - It only display in list page because when you finish storing the data because the list page is main pag eit go first to see the new added data.

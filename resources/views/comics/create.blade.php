@@ -65,7 +65,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="chapter">Chapter</label>
-            <input type="number" class="form-control" id="chapter" name="chapter" required value="{{ old('chapter') }}">
+            <input type="number" class="form-control" id="chapter" name="chapter" required value="{{ old('chapter') }}"gi>
             @error('chapter')
                 <div class="invalid-feedback d-block">
                     {{$message}}

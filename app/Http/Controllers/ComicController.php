@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comic;
 
 class ComicController extends Controller
 {
@@ -12,45 +13,8 @@ class ComicController extends Controller
 
     public function index(Request $request)
     {
-        $genre = $request->query('genre', 'all');
-        $rate = $request->query('rate', 'all');
-
-        $all = $this->comics();
-
-        if ($genre === 'all') {
-            $comics = $all;
-        } else {
-            $comics = [];
-
-            foreach ($all as $id => $comic) {
-                if ($comic['genre'] == $genre) {
-                    $comics[$id] = $comic;
-                }
-            }
-        }
-
-        if ($rate === 'all') {
-            $comics = $comics;
-        } else {
-            $filtered_comics = [];
-
-            foreach ($comics as $id => $comic) {
-                if ($comic['rate'] >= $rate) {
-                    $filtered_comics[$id] = $comic;
-                }
-            }
-
-            $comics = $filtered_comics;
-        }
-
-        return view(
-            'comics.index',
-            [
-                'comics' => $comics,
-                'genre' => $genre,
-                'rate' => $rate
-            ]
-        );
+        $comics = Comic::all();
+        return view('comics.index', compact('comics'));
     }
 
 
@@ -99,13 +63,8 @@ class ComicController extends Controller
      */
     public function show(string $id)
     {
-        $comics = $this->comics();
-
-        if (!isset($comics[$id])) {
-            abort(404);
-        }
-
-        return view('comics.show', ['comic' => $comics[$id]]);
+        $comic = Comic::findOrFail($id);
+        return view('comics.show', compact('comic'));
     }
 
     /**
